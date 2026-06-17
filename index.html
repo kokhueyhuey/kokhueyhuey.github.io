@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kok Huey Huey — Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F6F2;
+    --ink: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #4F6EF7;
+    --accent-soft: #E8ECFE;
+    --line: #E0DED8;
+    --white: #FFFFFF;
+    --tag-bg: #EFEFEB;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(247,246,242,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem; font-weight: 700;
+    color: var(--ink); text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 5rem;
+    position: relative;
+  }
+  .hero-grid {
+    max-width: 780px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+  .hero-name em {
+    font-style: normal; color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 1.125rem; color: var(--muted);
+    max-width: 580px; margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; border-radius: 8px;
+    font-size: 0.875rem; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--white);
+  }
+  .btn-primary:hover { background: #3a58e0; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--ink);
+    border: 1.5px solid var(--line);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .availability {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    background: #EDFBF0; border-radius: 999px;
+    font-size: 0.875rem; color: #2B7A3B; font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #34C759; flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; color: var(--accent);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700; letter-spacing: -0.03em;
+    margin-bottom: 3rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .skill-block {
+    background: var(--bg);
+    border-radius: 12px; padding: 1.5rem;
+    border: 1px solid var(--line);
+  }
+  .skill-block h4 {
+    font-size: 0.8rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin-bottom: 1rem;
+  }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem; font-weight: 500;
+    color: var(--ink);
+    transition: all 0.15s;
+  }
+  .tag:hover { border-color: var(--accent); color: var(--accent); }
+  .lang-tag {
+    background: var(--accent-soft);
+    border-color: transparent;
+    color: var(--accent);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg); }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .project-card {
+    background: var(--white);
+    border-radius: 16px; padding: 1.75rem;
+    border: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.3s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--accent-soft); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.25rem; margin-bottom: 1.25rem;
+  }
+  .project-card h3 {
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.625rem; letter-spacing: -0.01em;
+  }
+  .project-card p {
+    font-size: 0.875rem; color: var(--muted);
+    flex: 1; margin-bottom: 1.25rem; line-height: 1.55;
+  }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; font-weight: 600; color: var(--accent);
+    text-decoration: none; margin-top: auto;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.7rem; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--white); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .exp-block {
+    border: 1px solid var(--line);
+    border-radius: 14px; padding: 1.75rem;
+  }
+  .exp-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+  .exp-top h3 { font-size: 1rem; font-weight: 700; }
+  .exp-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; color: var(--muted);
+    background: var(--bg); padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+  }
+  .exp-place { font-size: 0.875rem; color: var(--accent); font-weight: 600; margin-bottom: 1rem; }
+  .exp-block ul { padding-left: 1.1rem; }
+  .exp-block li { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.4rem; line-height: 1.5; }
+
+  /* ── COMPETITIONS ── */
+  #competitions { background: var(--bg); }
+  .comp-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .comp-card {
+    flex: 1; min-width: 260px;
+    background: var(--white);
+    border-radius: 14px; padding: 1.5rem;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .comp-icon { font-size: 1.75rem; }
+  .comp-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .comp-card span { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--ink); }
+  #contact .section-label { color: #7B9BFF; }
+  #contact .section-title { color: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-desc { font-size: 1rem; color: #999; line-height: 1.7; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    text-decoration: none; color: var(--white);
+    font-size: 0.875rem; transition: all 0.2s;
+  }
+  .contact-item:hover { background: rgba(79,110,247,0.2); border-color: var(--accent); }
+  .contact-item-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+  .contact-item-text { display: flex; flex-direction: column; }
+  .contact-item-label { font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 4rem;
+    text-align: center;
+    font-size: 0.8rem; color: #555;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--line); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.25rem; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 6rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-card { max-width: 400px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">KHH<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="availability">
+      <div class="dot"></div>
+      Available for internship · Jul 27 – Oct 18, 2026
+    </div>
+    <p class="hero-eyebrow">Software Engineering Intern · Puchong, Selangor</p>
+    <h1 class="hero-name">Kok<br><em>Huey Huey</em></h1>
+    <p class="hero-sub">CS student at Multimedia University building full-stack web apps, desktop systems, and intuitive user experiences. Dean's List recipient with a CGPA of 3.86.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="resume.pdf" target="_blank">
+        ↓ Download Resume
+      </a>
+      <a class="btn btn-outline" href="https://github.com/kokhueyhuey" target="_blank">
+        ⬡ GitHub
+      </a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/kokhueyhuey/" target="_blank">
+        ↗ LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner reveal">
+    <p class="section-label">What I've built</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">🧠</div>
+        <h3>Peer Support System</h3>
+        <p>A full-stack web platform helping university students manage mental health and emotional well-being — with mood tracking, forum discussions, and role-based access for students and counselors.</p>
+        <div class="project-stack">
+          <span class="tag">React</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">CSS</span>
+        </div>
+        <a class="project-link" href="https://github.com/kokhueyhuey" target="_blank">
+          View on GitHub →
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🐾</div>
+        <h3>Pet Appointment Booking</h3>
+        <p>A web app that streamlines pet service appointment bookings — featuring schedule management, appointment creation, and role-based access for users and administrators.</p>
+        <div class="project-stack">
+          <span class="tag">Django</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+        <a class="project-link" href="https://github.com/kokhueyhuey" target="_blank">
+          View on GitHub →
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🅿️</div>
+        <h3>Parking Lot Management</h3>
+        <p>A desktop system that handles vehicle entry, exit, and slot allocation — with database-driven tracking of available and occupied spaces and complete parking records management.</p>
+        <div class="project-stack">
+          <span class="tag">Java</span>
+          <span class="tag">SQLite</span>
+        </div>
+        <a class="project-link" href="https://github.com/kokhueyhuey" target="_blank">
+          View on GitHub →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner reveal">
+    <p class="section-label">What I work with</p>
+    <h2 class="section-title">Skills & Technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h4>Programming Languages</h4>
+        <div class="tag-list">
+          <span class="tag">Java</span>
+          <span class="tag">Python</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">C#</span>
+          <span class="tag">OOP</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Frameworks & Web</h4>
+        <div class="tag-list">
+          <span class="tag">React</span>
+          <span class="tag">Django</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Tools & Databases</h4>
+        <div class="tag-list">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">VSCode</span>
+          <span class="tag">Swagger</span>
+          <span class="tag">Figma</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">SQLite</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <h4>Languages</h4>
+        <div class="tag-list">
+          <span class="tag lang-tag">Mandarin</span>
+          <span class="tag lang-tag">English</span>
+          <span class="tag lang-tag">Malay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner reveal">
+    <p class="section-label">Background</p>
+    <h2 class="section-title">Education & Experience</h2>
+    <div class="exp-grid">
+      <div class="exp-block">
+        <div class="exp-top">
+          <h3>Bachelor of CS (Hons) — Software Engineering</h3>
+          <span class="exp-date">Aug 2024 – Aug 2027</span>
+        </div>
+        <p class="exp-place">Multimedia University</p>
+        <ul>
+          <li>CGPA: 3.86 — Dean's List Award Recipient</li>
+        </ul>
+      </div>
+      <div class="exp-block">
+        <div class="exp-top">
+          <h3>Foundation in Information Technology</h3>
+          <span class="exp-date">Jul 2023 – Jul 2024</span>
+        </div>
+        <p class="exp-place">Multimedia University</p>
+        <ul>
+          <li>CGPA: 3.83 — Dean's List Award Recipient</li>
+        </ul>
+      </div>
+      <div class="exp-block">
+        <div class="exp-top">
+          <h3>Part-Timer, Service Crew</h3>
+          <span class="exp-date">Apr 2023 – Apr 2024</span>
+        </div>
+        <p class="exp-place">DAO Desserts</p>
+        <ul>
+          <li>Assisted in daily operations including customer service and food preparation</li>
+          <li>Built communication, teamwork, and problem-solving skills</li>
+        </ul>
+      </div>
+      <div class="exp-block">
+        <div class="exp-top">
+          <h3>Competitions</h3>
+          <span class="exp-date">2025 – 2026</span>
+        </div>
+        <p class="exp-place">Hackathons & Tech Events</p>
+        <ul>
+          <li>🏆 CodeNection 2025 Hackathon — Participant</li>
+          <li>☁️ AWS Cendekiawan 2026 Competition — Participant</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner reveal">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-desc">I'm looking for a software engineering internship from <strong style="color:#fff">27 Jul – 18 Oct 2026</strong>. Open to full-stack, backend, or frontend roles. Feel free to reach out!</p>
+        <br>
+        <a class="btn btn-primary" href="resume.pdf" target="_blank" style="margin-top:1rem; display:inline-flex;">↓ Download Resume</a>
+      </div>
+      <div class="contact-links">
+        <a class="contact-item" href="mailto:kittykhh0223@gmail.com">
+          <span class="contact-item-icon">✉</span>
+          <span class="contact-item-text">
+            <span class="contact-item-label">Email</span>
+            kittykhh0223@gmail.com
+          </span>
+        </a>
+        <a class="contact-item" href="tel:+60162011560">
+          <span class="contact-item-icon">📱</span>
+          <span class="contact-item-text">
+            <span class="contact-item-label">Phone</span>
+            +60 16-201 1560
+          </span>
+        </a>
+        <a class="contact-item" href="https://github.com/kokhueyhuey" target="_blank">
+          <span class="contact-item-icon">⬡</span>
+          <span class="contact-item-text">
+            <span class="contact-item-label">GitHub</span>
+            github.com/kokhueyhuey
+          </span>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/kokhueyhuey/" target="_blank">
+          <span class="contact-item-icon">↗</span>
+          <span class="contact-item-text">
+            <span class="contact-item-label">LinkedIn</span>
+            linkedin.com/in/kokhueyhuey
+          </span>
+        </a>
+        <div class="contact-item" style="cursor:default;">
+          <span class="contact-item-icon">📍</span>
+          <span class="contact-item-text">
+            <span class="contact-item-label">Location</span>
+            Puchong, Selangor, Malaysia
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with ♥ · Kok Huey Huey · 2026
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
