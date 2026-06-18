@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kok Huey Huey — Software Engineer</title>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,37 +56,37 @@
   }
   .nav-links a:hover { color: var(--ink); }
 
-  /* ── HERO ── */
-  #hero {
+  /* ── HOME ── */
+  #home {
     min-height: 100vh;
     display: flex; align-items: center;
     padding: 8rem 4rem 5rem;
     position: relative;
   }
-  .hero-grid {
+  .home-grid {
     max-width: 780px; margin: 0 auto; width: 100%;
   }
-  .hero-eyebrow {
+  .home-eyebrow {
     font-family: 'Space Mono', monospace;
     font-size: 0.75rem; color: var(--accent);
     letter-spacing: 0.12em; text-transform: uppercase;
     margin-bottom: 1.25rem;
   }
-  .hero-name {
+  .home-name {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700; line-height: 1.05;
     letter-spacing: -0.03em;
     margin-bottom: 1.25rem;
   }
-  .hero-name em {
+  .home-name em {
     font-style: normal; color: var(--accent);
   }
-  .hero-sub {
+  .home-sub {
     font-size: 1.125rem; color: var(--muted);
     max-width: 580px; margin-bottom: 1.5rem;
     font-weight: 400;
   }
-  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .home-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 0.5rem;
     padding: 0.75rem 1.5rem; border-radius: 8px;
@@ -118,6 +120,32 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
   }
+
+  .social-links{
+  display:flex;
+  gap:15px;
+  margin-top:20px;
+}
+
+.social-links a{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--ink);
+  text-decoration:none;
+  font-size:1.2rem;
+  transition:all .25s ease;
+}
+
+.social-links a:hover{
+  background:var(--accent);
+  color:white;
+  transform:translateY(-3px);
+}
 
   /* ── SECTIONS ── */
   section { padding: 6rem 4rem; }
@@ -206,6 +234,123 @@
   }
   .project-link:hover { gap: 0.7rem; }
 
+  /* PROJECT BUTTON */
+.btn-screenshots{
+  width:100%;
+  margin-bottom:1rem;
+  padding:0.75rem;
+  border:none;
+  border-radius:8px;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn-screenshots:hover{
+  background:var(--accent);
+  color:white;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:white;
+  width:min(900px,90%);
+  max-height:85vh;
+  overflow-y:auto;
+  border-radius:16px;
+  padding:2rem;
+  position:relative;
+}
+
+.close-modal{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:1.8rem;
+  cursor:pointer;
+}
+
+.modal-title{
+  margin-bottom:1.5rem;
+  font-size:1.5rem;
+}
+
+/* THUMBNAILS */
+.screenshot-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;
+}
+
+.thumb{
+  cursor:pointer;
+}
+
+.thumb img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  border:1px solid var(--line);
+  transition:.2s;
+}
+
+.thumb:hover img{
+  transform:scale(1.03);
+}
+
+.thumb-caption{
+  margin-top:.5rem;
+  font-size:.85rem;
+  color:var(--muted);
+}
+
+/* LIGHTBOX */
+.lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  z-index:10000;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:20px;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:80vh;
+  border-radius:12px;
+}
+
+.lightbox-caption{
+  color:white;
+  margin-top:15px;
+  text-align:center;
+}
+
+.lightbox-close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  color:white;
+  font-size:2rem;
+  cursor:pointer;
+}
+
   /* ── EXPERIENCE ── */
   #experience { background: var(--white); }
   .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -282,9 +427,9 @@
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.25rem; }
     section { padding: 4rem 1.5rem; }
-    #hero { padding: 6rem 1.5rem 3rem; }
-    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .hero-card { max-width: 400px; }
+    #home { padding: 6rem 1.5rem 3rem; }
+    .home-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .home-card { max-width: 400px; }
     .skills-grid { grid-template-columns: 1fr; }
     .projects-grid { grid-template-columns: 1fr; }
     .exp-grid { grid-template-columns: 1fr; }
@@ -296,8 +441,9 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero">KHH<span>.</span></a>
+  <a class="nav-logo" href="#home">KHH<span>.</span></a>
   <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -305,33 +451,55 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid">
+<!-- HOME -->
+<section id="home">
+  <div class="home-grid">
     <div class="availability">
       <div class="dot"></div>
       Available for internship · Jul 27 – Oct 18, 2026
     </div>
-    <p class="hero-eyebrow">Software Engineering Intern · Puchong, Selangor</p>
-    <h1 class="hero-name">Kok<br><em>Huey Huey</em></h1>
-    <p class="hero-sub">CS student at Multimedia University building full-stack web apps, desktop systems, and intuitive user experiences. Dean's List recipient with a CGPA of 3.86.</p>
-    <div class="hero-cta">
+    <p class="home-eyebrow">Software Engineering Student · MMU</p>
+    <h1 class="home-name">
+      Hello, I’m <em>Huey Huey</em> 
+    </h1>
+    <p class="home-sub">
+      A Computer Science student who enjoys building full-stack web apps, solving problems, and turning ideas into real working systems.
+      <br><br>
+    </p>
+    <!-- CTA BUTTONS -->
+    <div class="home-cta">
       <a class="btn btn-primary" href="resume.pdf" target="_blank">
-        ↓ Download Resume
+        View Resume
       </a>
-      <a class="btn btn-outline" href="https://github.com/kokhueyhuey" target="_blank">
-        ⬡ GitHub
+      <a class="btn btn-outline" href="#projects">
+        View Projects
       </a>
-      <a class="btn btn-outline" href="https://www.linkedin.com/in/kokhueyhuey/" target="_blank">
-        ↗ LinkedIn
-      </a>
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-links">
+
+    <a href="mailto:kittykhh0223@gmail.com" target="_blank">
+        <i class="fa-solid fa-envelope"></i>
+    </a>
+
+    <a href="https://wa.me/60162011560" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <a href="https://github.com/kokhueyhuey" target="_blank">
+        <i class="fa-brands fa-github"></i>
+    </a>
+
+    <a href="https://linkedin.com/in/kokhueyhuey" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+    </a>
+
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
-
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner reveal">
     <p class="section-label">What I've built</p>
@@ -342,13 +510,17 @@
         <div class="project-icon">🧠</div>
         <h3>Peer Support System</h3>
         <p>A full-stack web platform helping university students manage mental health and emotional well-being — with mood tracking, forum discussions, and role-based access for students and counselors.</p>
+        <button class="btn-screenshots"
+        onclick="openProjectModal('peer')">
+        <i class="fa-solid fa-images"></i> View Screenshots
+        </button>
         <div class="project-stack">
           <span class="tag">React</span>
           <span class="tag">Firebase</span>
           <span class="tag">JavaScript</span>
           <span class="tag">CSS</span>
         </div>
-        <a class="project-link" href="https://github.com/kokhueyhuey" target="_blank">
+        <a class="project-link" href="https://github.com/YapYuNing08/PeerSupportSystem.git" target="_blank">
           View on GitHub →
         </a>
       </div>
@@ -357,6 +529,10 @@
         <div class="project-icon">🐾</div>
         <h3>Pet Appointment Booking</h3>
         <p>A web app that streamlines pet service appointment bookings — featuring schedule management, appointment creation, and role-based access for users and administrators.</p>
+        <button class="btn-screenshots"
+        onclick="openProjectModal('pet')">
+        <i class="fa-solid fa-images"></i> View Screenshots
+        </button>
         <div class="project-stack">
           <span class="tag">Django</span>
           <span class="tag">Python</span>
@@ -364,7 +540,7 @@
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
         </div>
-        <a class="project-link" href="https://github.com/kokhueyhuey" target="_blank">
+        <a class="project-link" href="https://github.com/kokhueyhuey/PetBookingSystem.git" target="_blank">
           View on GitHub →
         </a>
       </div>
@@ -373,11 +549,15 @@
         <div class="project-icon">🅿️</div>
         <h3>Parking Lot Management</h3>
         <p>A desktop system that handles vehicle entry, exit, and slot allocation — with database-driven tracking of available and occupied spaces and complete parking records management.</p>
+        <button class="btn-screenshots"
+        onclick="openProjectModal('parking')">
+        <i class="fa-solid fa-images"></i> View Screenshots
+        </button>
         <div class="project-stack">
           <span class="tag">Java</span>
           <span class="tag">SQLite</span>
         </div>
-        <a class="project-link" href="https://github.com/kokhueyhuey" target="_blank">
+        <a class="project-link" href="https://github.com/Y3ee/parking-lot-management-system.git" target="_blank">
           View on GitHub →
         </a>
       </div>
@@ -385,6 +565,39 @@
     </div>
   </div>
 </section>
+
+<!-- PROJECT MODAL -->
+
+<div class="modal" id="projectModal">
+
+  <div class="modal-content">
+
+    <span class="close-modal"
+    onclick="closeProjectModal()">&times;</span>
+
+    <h3 class="modal-title" id="modalTitle"></h3>
+
+    <div class="screenshot-grid" id="modalGallery"></div>
+
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+  <span class="lightbox-close"
+  onclick="closeLightbox()">&times;</span>
+
+  <img id="lightboxImg">
+
+  <div class="lightbox-caption">
+    <h3 id="lightboxTitle"></h3>
+    <p id="lightboxCaption"></p>
+  </div>
+
+</div>
 
 <div class="divider"></div>
 
@@ -487,8 +700,8 @@
         </div>
         <p class="exp-place">Hackathons & Tech Events</p>
         <ul>
-          <li>🏆 CodeNection 2025 Hackathon — Participant</li>
-          <li>☁️ AWS Cendekiawan 2026 Competition — Participant</li>
+          <li>CodeNection 2025 Hackathon — Participant</li>
+          <li>AWS Cendekiawan 2026 Competition — Participant</li>
         </ul>
       </div>
     </div>
@@ -506,32 +719,40 @@
       <div>
         <p class="contact-desc">I'm looking for a software engineering internship from <strong style="color:#fff">27 Jul – 18 Oct 2026</strong>. Open to full-stack, backend, or frontend roles. Feel free to reach out!</p>
         <br>
-        <a class="btn btn-primary" href="resume.pdf" target="_blank" style="margin-top:1rem; display:inline-flex;">↓ Download Resume</a>
+        <a class="btn btn-primary" href="resume.pdf" target="_blank" style="margin-top:1rem; display:inline-flex;">View Resume</a>
       </div>
       <div class="contact-links">
         <a class="contact-item" href="mailto:kittykhh0223@gmail.com">
-          <span class="contact-item-icon">✉</span>
+          <span class="contact-item-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </span>
           <span class="contact-item-text">
             <span class="contact-item-label">Email</span>
             kittykhh0223@gmail.com
           </span>
         </a>
-        <a class="contact-item" href="tel:+60162011560">
-          <span class="contact-item-icon">📱</span>
+        <a class="contact-item" href="https://wa.me/60162011560" target="_blank">
+          <span class="contact-item-icon">
+            <i class="fa-brands fa-whatsapp"></i>
+          </span>
           <span class="contact-item-text">
             <span class="contact-item-label">Phone</span>
             +60 16-201 1560
           </span>
         </a>
         <a class="contact-item" href="https://github.com/kokhueyhuey" target="_blank">
-          <span class="contact-item-icon">⬡</span>
+          <span class="contact-item-icon">
+            <i class="fa-brands fa-github"></i>
+          </span>
           <span class="contact-item-text">
             <span class="contact-item-label">GitHub</span>
             github.com/kokhueyhuey
           </span>
         </a>
         <a class="contact-item" href="https://www.linkedin.com/in/kokhueyhuey/" target="_blank">
-          <span class="contact-item-icon">↗</span>
+          <span class="contact-item-icon">
+            <i class="fa-brands fa-linkedin"></i>
+          </span>
           <span class="contact-item-text">
             <span class="contact-item-label">LinkedIn</span>
             linkedin.com/in/kokhueyhuey
@@ -551,6 +772,7 @@
 
 <footer>
   Built with ♥ · Kok Huey Huey · 2026
+  <!-- Built with ♥, bugs, and late-night debugging · 2026 · Kok Huey Huey -->
 </footer>
 
 <script>
@@ -562,6 +784,198 @@
     });
   }, { threshold: 0.12 });
   reveals.forEach(r => observer.observe(r));
+
+const projectImages = {
+
+peer: {
+title: "Peer Support System",
+images: [
+{
+src:"images/peer-1.png",
+title:"Mood Tracker Overview",
+caption:"Record daily emotional well-being"
+},
+{
+src:"images/peer-2.png",
+title:"Mood Analysis Dashboard",
+caption:"Visualize and analyze mood patterns"
+},
+{
+src:"images/peer-3.png",
+title:"Counseling Session Chat",
+caption:"Real-time communication with counselors"
+},
+{
+src:"images/peer-4.png",
+title:"Forum Discussion Page",
+caption:"Join topic-based support discussions and connect with supportive peers."
+},
+{
+src:"images/peer-5.png",
+title:"Post & Comment Interaction",
+caption:"Create posts, share experiences, and engage in conversations."
+},
+{
+src:"images/peer-6.png",
+title:"Automated Content Filtering",
+caption:"Posts and comments containing inappropriate or abusive language are automatically detected, flagged, and temporarily hidden from public view."
+},
+{
+src:"images/peer-7.png",
+title:"Content Moderation Review",
+caption:"Moderators review flagged content and decide appropriate actions."
+},
+{
+src:"images/peer-8.png",
+title:"Warning Management System",
+caption:"Issue warnings and suspend accounts once the warning threshold is reached."
+}
+]
+},
+
+pet: {
+title:"Pet Appointment Booking",
+images:[
+{
+src:"images/pet-1.png",
+title:"Appointment Booking",
+caption:"Book services for pets"
+},
+{
+src:"images/pet-2.png",
+title:"Monthly Booking Calendar",
+caption:"View all upcoming appointments"
+},
+{
+src:"images/pet-3.png",
+title:"Pet Profile Management",
+caption:"Add and update pet information"
+},
+{
+src:"images/pet-4.png",
+title:"Admin Booking Dashboard",
+caption:"Manage bookings and appointment status"
+},
+{
+src:"images/pet-5.png",
+title:"Weekly Schedule Overview",
+caption:"Monitor all customer appointments"
+},
+{
+src:"images/pet-6.png",
+title:"Pet Hotel Room Schedule",
+caption:"Track room availability and occupancy"
+}
+]
+},
+
+parking: {
+title:"Parking Lot Management",
+images:[
+{
+src:"images/parking-1.png",
+title: "Parking Slot Overview",
+caption: "Real-time parking slot overview with color-coded availability."
+},
+{
+src:"images/parking-2.png",
+title:"Ticket Generation",
+caption:"Vehicle entry process with automatic ticket generation."
+},
+{
+src:"images/parking-3.png",
+title:"Billing & Payment",
+caption:"Parking fee calculation and payment processing."
+},
+{
+src:"images/parking-4.png",
+title:"Admin Monitoring",
+caption:"Admin dashboard displaying occupied slots and vehicle details."
+}
+]
+}
+
+};
+let currentProject = null;
+let currentIndex = 0;
+
+
+function openProjectModal(project){
+
+const data = projectImages[project];
+
+document.getElementById("modalTitle").innerText =
+data.title;
+
+const gallery =
+document.getElementById("modalGallery");
+
+gallery.innerHTML = "";
+
+data.images.forEach((img, index) => {
+  gallery.innerHTML += `
+    <div class="thumb"
+      onclick="openLightbox('${img.src}','${img.title}','${img.caption}','${project}',${index})">
+      
+      <img src="${img.src}" alt="">
+
+      <div class="thumb-caption">${img.title}</div>
+    </div>
+  `;
+});
+
+document.getElementById("projectModal").style.display =
+"flex";
+}
+
+function closeProjectModal(){
+document.getElementById("projectModal").style.display =
+"none";
+}
+
+function openLightbox(src, title, caption, project = null, index = 0) {
+
+currentProject = project;
+currentIndex = index;
+
+document.getElementById("lightboxImg").src = src;
+document.getElementById("lightboxTitle").innerText = title;
+document.getElementById("lightboxCaption").innerText = caption;
+
+document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox(){
+
+document.getElementById("lightbox").style.display =
+"none";
+}
+document.addEventListener("keydown", function(e) {
+
+const lightbox = document.getElementById("lightbox");
+if (lightbox.style.display !== "flex") return;
+
+if (!currentProject) return;
+
+const images = projectImages[currentProject].images;
+
+if (e.key === "ArrowRight") {
+currentIndex = (currentIndex + 1) % images.length;
+
+const img = images[currentIndex];
+openLightbox(img.src, img.title, img.caption, currentProject, currentIndex);
+}
+
+if (e.key === "ArrowLeft") {
+currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+const img = images[currentIndex];
+openLightbox(img.src, img.title, img.caption, currentProject, currentIndex);
+}
+
+});
 </script>
+
+
 </body>
 </html>
